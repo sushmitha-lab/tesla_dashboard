@@ -19,33 +19,93 @@ import utils
 import data_processor as dp
 import visualizations as viz
 
-# Custom CSS to improve appearance
+# Custom CSS to improve appearance with full black background and white headings
 st.markdown('''
 <style>
+    /* Force full black background */
+    .stApp {
+        background-color: #000000 !important;
+    }
+    .main, .block-container, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+        background-color: #000000 !important;
+    }
+    /* Side bar styling */
+    [data-testid="stSidebar"] {
+        background-color: #111111 !important;
+        border-right: 1px solid #333333;
+    }
     .block-container {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+    /* Very visible white headings with contrast enhancement */
     h1, h2, h3 {
-        font-weight: bold;
-        color: #FFFFFF;
+        font-weight: 900 !important; /* Extra bold */
+        color: #FFFFFF !important; /* Pure white headings */
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Shadow for contrast */
+        letter-spacing: 0.5px; /* Slightly spaced letters */
     }
     h1 {
-        font-size: 2.5rem !important;
+        font-size: 3rem !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 2px solid #FFFFFF;
+        padding-bottom: 0.5rem;
     }
     h2 {
-        font-size: 2rem !important;
+        font-size: 2.4rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+        border-bottom: 1px solid #555555;
+        padding-bottom: 0.3rem;
     }
     h3 {
-        font-size: 1.5rem !important;
+        font-size: 1.8rem !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
     }
+    /* Text styling */
     p, li, div {
         font-size: 1.1rem !important;
+        color: #FAFAFA !important;
     }
+    /* Chart styling */
     .stPlotlyChart {
-        background-color: #262730;
-        padding: 1rem;
+        background-color: #111111 !important;
+        padding: 1.5rem;
         border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        margin-bottom: 2rem !important;
+        border: 1px solid #333333;
+    }
+    /* Make expanders more visible */
+    .streamlit-expanderHeader {
+        font-weight: bold;
+        color: #00FF00 !important; /* Bright green for expanders */
+        background-color: #111111 !important;
+        border: 1px solid #333333;
+        border-radius: 4px;
+        padding: 0.5rem !important;
+    }
+    /* Button styling */
+    .stButton>button {
+        background-color: #444444 !important;
+        color: white !important;
+        font-weight: bold;
+        border: 1px solid #666666 !important;
+    }
+    .stButton>button:hover {
+        background-color: #666666 !important;
+        border: 1px solid #888888 !important;
+    }
+    /* Force text inputs to have visible text */
+    .stTextInput>div>div>input {
+        color: white !important;
+        background-color: #222222 !important;
+    }
+    /* Ensure select boxes have visible text */
+    .stSelectbox>div>div>div>div {
+        color: white !important;
+        background-color: #222222 !important;
     }
 </style>
 ''', unsafe_allow_html=True)
@@ -178,6 +238,12 @@ with st.expander("Environmental Impact Insights"):
     - Sustainable Materials shows progress in reducing the environmental impact of vehicle components
     - Carbon Footprint Reduction indicates Tesla's overall climate impact improvement
     """)
+
+# Footer
+st.markdown("---")
+st.markdown(f"Dashboard last updated: {datetime.now().strftime('%Y-%m-%d')}")
+st.caption("Data sources: Yahoo Finance, Tesla quarterly reports, and sustainability disclosures")
+
 
 # Footer
 st.markdown("---")
